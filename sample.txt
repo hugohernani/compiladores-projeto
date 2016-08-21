@@ -6,7 +6,7 @@
 		this.age = age;
 	};
 	
-	var hugo_student = new Student('Hugo', 23);
+	hugo_student = new Student('Hugo', 23);
 	var daniel_student = new Student('Daniel', 23);
 	var madson_student = new Student('Madson', 23);
 });
