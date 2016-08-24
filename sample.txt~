@@ -1,1 +1,12 @@
-// Código a ser testado ficará aqui
+(function(){
+	var discipline = "Compiladores";
+	
+	function Student(name, age){
+		this.name = name;
+		this.age = age;
+	};
+	
+	hugo_student = new Student('Hugo', 23);
+	var daniel_student = new Student('Daniel', 23);
+	var madson_student = new Student('Madson', 23);
+});

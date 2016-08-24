@@ -1,5 +1,7 @@
 %{
 #include <stdio.h>
+int yylex();
+int yyerror();
 %}
 
 // Symbols.
@@ -8,21 +10,69 @@
 	char	*sval;
 };
 
-// Tokens que vierem do lexer serão reconhecidos aqui
-
+// Tokens que vierem do lexer são reconhecidos aqui
 %token <sval> IDENTIFIER
 %token OPEN_ANGLE
 %token CLOSE_ANGLE
 %token FUNCTION
-%token IDENTIFIER
 %token STRING_LITERAL
-%token FUNCTION
 %token VAR
 %token NUMERIC_LITERAL
 %token END_STATEMENT
 %token COMMA_SEP
 %token ASSIGNMENT
 %token NEW
+%token BREAK
+%token CASE
+%token CONTINUE
+%token DEFAULT
+%token DO
+%token ELSE
+%token FINALLY
+%token FOR
+%token IF
+%token IN
+%token INSTANCEOF
+%token RETURN
+%token SWITCH
+%token THIS
+%token THROW
+%token TRY
+%token TYPEOF
+%token VOID
+%token WHILE
+%token WITH
+%token TRUE_STATEMENT
+%token FALSE_STATEMENT
+%token NULL_STATEMENT
+%token CLASS
+%token CONST
+%token SUPER
+%token OPEN_BRACE
+%token CLOSE_BRACE
+%token OPEN_BRACKET
+%token CLOSE_BRACKET
+%token PERIOD
+%token QUESTION_MARK
+%token COLON
+%token EQ_VAL_OR_TYPE
+%token EQ_VAL
+%token DIFF_VAL_OR_TYPE
+%token DIFF_VAL
+%token NOT
+%token LESS_EQUAL
+%token LESS
+%token GREATER
+%token PLUS
+%token MINUS
+%token TIMES
+%token DIVIDE
+%token AND
+%token B_AND
+%token OR
+%token B_OR
+%token B_XOR
+%token B_NOT
 
 %token BLOCK
 %token ENDBLOCK
@@ -32,20 +82,18 @@
 %%
 
 algorithm:
-	OPEN_ANGLE FUNCTION OPEN_ANGLE CLOSE_ANGLE BLOCK { print("Iniciando o código. \n") }
+	OPEN_ANGLE FUNCTION OPEN_ANGLE CLOSE_ANGLE BLOCK { printf("Iniciando o código. \n"); }
 	inicio
-	ENDBLOCK { print("\nFim do código") }
+	ENDBLOCK { printf("\nFim do código"); }
 	;
-%%
 
 inicio:
 	/* empty */
-	| inicio
 	| declaracao_variaveis
 	| funcao
 	;
 
-declaracao_variaves:
+declaracao_variaveis:
 	declaracao_global_de_variavel
 	 | declaracao_local_de_variavel
 	;
@@ -95,6 +143,8 @@ funcao_instanciamento:
 chamada_funcao:
 	IDENTIFIER OPEN_ANGLE IDENTIFIER COMMA_SEP IDENTIFIER CLOSE_ANGLE END_STATEMENT
 	;
+
+%%
 
 int yyerror(char *s) {
   printf("yyerror : %s\n",s);
