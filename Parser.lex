@@ -1,5 +1,7 @@
+%option yylineno
+
 %{
-#include "Parser.h"
+	#include "Parser.h"
 %}
 
 blanks          [ \t\n]+
@@ -66,8 +68,8 @@ StringLiteral (\"{DoubleStringCharacter}*\")|(\'{SingleStringCharacter}*\')
 {DecimalLiteral}                   return(NUMERIC_LITERAL);
 {HexIntegerLiteral}                return(NUMERIC_LITERAL);
 {OctalIntegerLiteral}              return(NUMERIC_LITERAL);
-"{"                                return(OPEN_BRACE);
-"}"                                return(CLOSE_BRACE);
+"{"                                return(BLOCK);
+"}"                                return(ENDBLOCK);
 "("                                return(OPEN_ANGLE);
 ")"                                return(CLOSE_ANGLE);
 "["                                return(OPEN_BRACKET);

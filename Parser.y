@@ -1,8 +1,9 @@
 %{
-#include <stdio.h>
-int yylex();
-int yyerror();
+	#include <stdio.h>
+	int yylex();
+	int yyerror();
 %}
+
 
 // Symbols.
 %union
@@ -48,8 +49,6 @@ int yyerror();
 %token CLASS
 %token CONST
 %token SUPER
-%token OPEN_BRACE
-%token CLOSE_BRACE
 %token OPEN_BRACKET
 %token CLOSE_BRACKET
 %token PERIOD
@@ -84,7 +83,7 @@ int yyerror();
 algorithm:
 	OPEN_ANGLE FUNCTION OPEN_ANGLE CLOSE_ANGLE BLOCK { printf("Iniciando o código. \n"); }
 	inicio
-	ENDBLOCK { printf("\nFim do código"); }
+	ENDBLOCK CLOSE_ANGLE END_STATEMENT { printf("\nFim do código.\n"); }
 	;
 
 inicio:
@@ -108,9 +107,9 @@ declaracao_local_de_variavel:
 	 | IDENTIFIER ASSIGNMENT funcao_instanciamento
 	;
 
-// Acredito que falta algo aqui... O que será? :/
 inicio_expressao:
-	tipo END_STATEMENT
+	tipo END_STATEMENT { printf(" - Variavel declarada\n"); }
+	inicio
 	;
 
 tipo:
@@ -125,7 +124,7 @@ funcao:
 
 // Exemplo: Student(name, age) { TODO Precisa adicionar o recebimento de mais que um identificador
 funcao_declaracao:
-	FUNCTION IDENTIFIER OPEN_ANGLE IDENTIFIER COMMA_SEP IDENTIFIER CLOSE_ANGLE BLOCK
+	FUNCTION IDENTIFIER OPEN_ANGLE IDENTIFIER COMMA_SEP IDENTIFIER CLOSE_ANGLE BLOCK { printf("Funcao anonima criada: %s\n", $2); }
 	inicio
 	ENDBLOCK
 	;
