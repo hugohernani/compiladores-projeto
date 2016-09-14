@@ -88,6 +88,7 @@ StringLiteral (\"{DoubleStringCharacter}*\")|(\'{SingleStringCharacter}*\')
 "<="                               return(LESS_EQUAL);
 "<"                                return(LESS);
 ">"                                return(GREATER);
+">="										  return(GREATER_EQUAL);
 "+"                                return(PLUS);
 "-"                                return(MINUS);
 "*"                                return(TIMES);

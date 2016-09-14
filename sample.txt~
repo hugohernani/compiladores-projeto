@@ -1,12 +1,10 @@
 (function(){
 	var discipline = "Compiladores";
-	
-	function Student(nama_str, age_str){
-		name = name_str;
-		age = age_str;
-	};
-	
-	hugo_student = new Student('Hugo', 23);
-	var daniel_student = new Student('Daniel', 23);
-	var madson_student = new Student('Madson', 23);
+	var alunos = "Hugo, Daniel e Madson";
+	var idade = 23;
+	if(idade > 18){
+		var pode_entrar = True;
+	}else{
+		var pode_entrar = False;
+	}
 });

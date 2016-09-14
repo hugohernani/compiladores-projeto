@@ -62,6 +62,7 @@
 %token LESS_EQUAL
 %token LESS
 %token GREATER
+%token GREATER_EQUAL
 %token PLUS
 %token MINUS
 %token TIMES
@@ -90,6 +91,25 @@ inicio:
 	/* empty */
 	| declaracao_variaveis
 	| funcao
+	| condicao
+	;
+	
+condicao:
+	IF OPEN_ANGLE IDENTIFIER token_comparador NUMERIC_LITERAL CLOSE_ANGLE BLOCK { printf("\tInicio de condição"); }
+	inicio
+	ENDBLOCK { printf("\tFim do IF."); }
+	ELSE BLOCK
+	inicio
+	ENDBLOCK { printf("\tFim do ELSE."); }
+	;
+	
+token_comparador:
+	LESS
+	| LESS_EQUAL
+	| GREATER
+	| GREATER_EQUAL
+	| EQ_VAL
+	| DIFF_VAL
 	;
 
 declaracao_variaveis:
@@ -100,6 +120,7 @@ declaracao_variaveis:
 declaracao_global_de_variavel:
 	VAR IDENTIFIER ASSIGNMENT inicio_expressao
 	 | VAR IDENTIFIER ASSIGNMENT funcao_instanciamento
+	 | VAR IDENTIFIER ASSIGNMENT IDENTIFIER END_STATEMENT { printf("\n\t\tAtribuição de Variável\n"); } 
 	;
 	
 declaracao_local_de_variavel:
@@ -113,8 +134,8 @@ inicio_expressao:
 	;
 
 tipo:
-	NUMERIC_LITERAL	{ printf("\n\tInteiro"); }
-	 | STRING_LITERAL { printf("\n\tString"); } 
+	NUMERIC_LITERAL	{ printf("\n\tInteiro  "); }
+	 | STRING_LITERAL { printf("\n\tString  "); } 
 	;
 
 funcao:

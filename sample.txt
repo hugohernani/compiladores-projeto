@@ -1,4 +1,10 @@
 (function(){
 	var discipline = "Compiladores";
-	
+	var alunos = "Hugo, Daniel e Madson";
+	var idade = 23;
+	if(idade > 18){
+		var pode_entrar = "sim";
+	}else{
+		var pode_entrar = "não";
+	}
 });
